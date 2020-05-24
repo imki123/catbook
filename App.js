@@ -13,7 +13,7 @@ export default function App() {
     axios("https://api.thecatapi.com/v1/images/search").then(function (
       response
     ) {
-      //console.log(response)
+      console.log(response)
       console.log(response.data[0].url);
       setImageUri(response.data[0].url);
     });

@@ -1,2 +1,2 @@
 # Catbook
-This is a simple catbook made by expo
+This is a simple Catbook made by expo
