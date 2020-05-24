@@ -23,11 +23,11 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.yourcompany.yourappname",
+      "bundleIdentifier": "com.github.imki123",
       "buildNumber": "1.0.0"
     },
     "android":{
-      "package": "com.yourcompany.yourappname",
+      "package": "com.github.imki123",
       "versionCode": 1
     }
   }
