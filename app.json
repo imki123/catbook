@@ -26,9 +26,12 @@
       "bundleIdentifier": "com.github.imki123",
       "buildNumber": "1.0.0"
     },
-    "android":{
+    "android": {
       "package": "com.github.imki123",
-      "versionCode": 1
-    }
+      "versionCode": 2,
+      "permissions": []
+    },
+    "description": "Cat book publish!",
+    "githubUrl": "https://github.com/imki123"
   }
 }

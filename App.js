@@ -28,7 +28,7 @@ export default function App() {
       }
 
       <TouchableOpacity onPress={searchCatAsync} style={styles.button}>
-        <Text style={styles.buttonText}>고양이 찾기</Text>
+        <Text style={styles.buttonText}>새로운 고양이 찾기</Text>
       </TouchableOpacity>
     </View>
   );
