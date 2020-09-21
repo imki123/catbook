@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "476752ffb6e89c27b736",
-    "url": "/catbook/static/js/app.61b2a736.chunk.js"
+    "revision": "819527ab3118eea2b7a8",
+    "url": "/catbook/static/js/app.01ce8d29.chunk.js"
   },
   {
     "revision": "abb2a83371cd3eb205b7",
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/catbook/static/media/dog_main.d60d4c9c.png"
   },
   {
-    "revision": "69aa040b489b42c24c0819d4020b609e",
+    "revision": "1b96049f078611fd1d89506137b7d6be",
     "url": "/catbook/index.html"
   },
   {
