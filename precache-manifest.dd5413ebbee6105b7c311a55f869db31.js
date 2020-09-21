@@ -1,15 +1,15 @@
 self.__precacheManifest = [
   {
-    "revision": "819527ab3118eea2b7a8",
-    "url": "/catbook/static/js/app.01ce8d29.chunk.js"
+    "revision": "63cc764e24071d884ff3",
+    "url": "/catbook/static/js/app.cd298e2f.chunk.js"
   },
   {
     "revision": "abb2a83371cd3eb205b7",
     "url": "/catbook/static/js/runtime~app.4e055ef8.js"
   },
   {
-    "revision": "33ef5de0387b8121c011",
-    "url": "/catbook/static/js/2.efb94a76.chunk.js"
+    "revision": "ff6d7044e71816910086",
+    "url": "/catbook/static/js/2.57f9d78d.chunk.js"
   },
   {
     "revision": "cc012d9532f09dc94fe20d6b8c0d433d",
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/catbook/static/media/dog_main.d60d4c9c.png"
   },
   {
-    "revision": "1b96049f078611fd1d89506137b7d6be",
+    "revision": "e3d4abd6310baf9d49f0a1f7d89d6fc5",
     "url": "/catbook/index.html"
   },
   {
@@ -37,7 +37,7 @@ self.__precacheManifest = [
   },
   {
     "revision": "2896124908215aa3d76c22c183f985ea",
-    "url": "/catbook/static/js/2.efb94a76.chunk.js.LICENSE.txt"
+    "url": "/catbook/static/js/2.57f9d78d.chunk.js.LICENSE.txt"
   },
   {
     "revision": "1a10c0141a991a41903bd05a6fd7a480",
