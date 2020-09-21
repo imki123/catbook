@@ -102,10 +102,9 @@ export default function App() {
 		let url = 'https://blog-imki123-backend.herokuapp.com/catbook/getAnimal/cat/' + searchBreed
 		if (whatBook === 'dog') url = 'https://blog-imki123-backend.herokuapp.com/catbook/getAnimal/dog/' + searchBreed
 
-		Axios.get(url,{
+		Axios.get(url, {
 			withCredentials: true,
-		})
-		.then((res) => {
+		}).then((res) => {
 			if (res.data[0]) {
 				setImageUri(res.data[0].url)
 
@@ -170,21 +169,21 @@ export default function App() {
 					<>
 						{cat != 'noInfo' ? (
 							<View style={styles.textContainer}>
-								<Text>- 종류: {cat.breeds[0].name}</Text>
-								{cat.breeds[0].alt_names != undefined && <Text>- 별명: {cat.breeds[0].alt_names}</Text>}
-								{cat.breeds[0].origin != undefined && <Text>- 출신지: {cat.breeds[0].origin}</Text>}
+								<Text style={styles.contentText}>- 종류: {cat.breeds[0].name}</Text>
+								{cat.breeds[0].alt_names != undefined && <Text style={styles.contentText}>- 별명: {cat.breeds[0].alt_names}</Text>}
+								{cat.breeds[0].origin != undefined && <Text style={styles.contentText}>- 출신지: {cat.breeds[0].origin}</Text>}
 								{cat.breeds[0].adaptability != undefined && (
-									<Text>
+									<Text style={styles.contentText}>
 										- 적응력 / 애정도 / 에너지: {cat.breeds[0].adaptability} / {cat.breeds[0].affection_level} / {cat.breeds[0].energy_level}
 									</Text>
 								)}
 								{cat.breeds[0].child_friendly != undefined && (
-									<Text>
+									<Text style={styles.contentText}>
 										- 어린이친화력 / 강아지친화력: {cat.breeds[0].child_friendly} / {cat.breeds[0].dog_friendly}
 									</Text>
 								)}
-								{cat.breeds[0].temperament != undefined && <Text>- 성격: {cat.breeds[0].temperament}</Text>}
-								{cat.breeds[0].description != undefined && <Text>- 특징: {cat.breeds[0].description}</Text>}
+								{cat.breeds[0].temperament != undefined && <Text style={styles.contentText}>- 성격: {cat.breeds[0].temperament}</Text>}
+								{cat.breeds[0].description != undefined && <Text style={styles.contentText}>- 특징: {cat.breeds[0].description}</Text>}
 							</View>
 						) : (
 							<View style={styles.textContainer}>

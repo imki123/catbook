@@ -1,5 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native'
 import Constants from 'expo-constants'
+import { TouchableWithoutFeedback } from 'react-native'
 
 const screenWidth = Math.round(Dimensions.get('window').width)
 const screenHeight = Math.round(Dimensions.get('window').height)
@@ -10,6 +11,7 @@ let styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 		marginTop: Constants.statusBarHeight,
+		width: screenWidth,
 		maxWidth: 600,
 		margin: 'auto',
 	},
@@ -17,6 +19,7 @@ let styles = StyleSheet.create({
 		flexGrow: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
+		width: screenWidth,
 		maxWidth: 600,
 		margin: 'auto',
 	},
@@ -25,8 +28,7 @@ let styles = StyleSheet.create({
 		fontWeight: 'bold',
 	},
 	image: {
-		width: screenWidth,
-		maxWidth: 600,
+		width: '100%',
 		height: 300,
 		resizeMode: 'contain',
 	},
@@ -43,18 +45,21 @@ let styles = StyleSheet.create({
 	},
 	textContainer: {
 		textAlign: 'left',
+		width: screenWidth -100,
+		maxWidth: 500,
+	},
+	contentText: {
 		fontSize: 16,
-		width: 300,
 	},
 	changeBookView: {
-		width: screenWidth,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
+		width: '100%',
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'flex-end',
 	},
 	changeBookText: {
-    margin: 0,
-		fontSize: 14,
+    	margin: 0,
+		fontSize: 16,
 		color: 'blue',
 		padding: 10,
 	},
@@ -70,13 +75,15 @@ const SelectStyles = StyleSheet.create({
 		borderColor: 'gray',
 		borderRadius: 4,
 		color: 'black',
-		width: 300,
+		width: screenWidth -100,
+		maxWidth: 500,
 		alignSelf: 'center',
 		paddingRight: 30, // to ensure the text is never behind the icon
 	},
 	inputAndroid: {
 		fontSize: 20,
-		width: 300,
+		width: screenWidth -100,
+		maxWidth: 500,
 		alignSelf: 'center',
 		color: 'black',
 	},
