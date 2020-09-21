@@ -4,8 +4,11 @@ import Select from 'react-native-picker-select'
 import axios from 'axios'
 import Emoji from 'react-native-emoji'
 import { styles, SelectStyles } from './styles.js'
-//import translator, { translate } from './translator.js'
-import { CAT_API_KEY } from './env.js'
+import * as Localization from 'expo-localization'
+import Axios from 'axios'
+
+//구글번역기
+const locale = Localization.locale.substring(0, 2)
 
 export default function App() {
 	const [whatBook, setWhatBook] = useState('cat') //book 선택
@@ -96,29 +99,35 @@ export default function App() {
 			//종류별 이미지 가져오기
 			console.log('searchCatAsync, breed:', searchBreed)
 		}
-		let url = 'https://api.thecatapi.com/v1/images/search?breed_ids=' + searchBreed
-		if (whatBook === 'cat') url = 'https://api.thecatapi.com/v1/images/search?breed_ids=' + searchBreed
-		else if (whatBook === 'dog') url = 'https://api.thedogapi.com/v1/images/search?breed_ids=' + searchBreed
 
 		//이미지 및 정보 가져오기
-		axios.get(url, {
-			headers: { 'x-api-key': CAT_API_KEY }, //cat-api
-		}).then((res) => {
+		let url = 'https://blog-imki123-backend.herokuapp.com/catbook/getAnimal/cat/' + searchBreed
+		if (whatBook === 'dog') url = 'https://blog-imki123-backend.herokuapp.com/catbook/getAnimal/dog/' + searchBreed
+
+		Axios.get(url,{
+			withCredentials: true,
+		})
+		.then((res) => {
 			if (res.data[0]) {
 				setImageUri(res.data[0].url)
 
-				//번역하기 //API_KEY가 노출 되는 관계로 잠시 미사용
-				/* let text = ''
+				//번역할 텍스트 설정하기
+				let text = ''
 				if (res.data[0].breeds[0].temperament) {
 					text += res.data[0].breeds[0].temperament
 				}
 				if (res.data[0].breeds[0].description) {
-					text += '/' + res.data[0].breeds[0].description
+					text += '__' + res.data[0].breeds[0].description
 				}
-				translate(text)
+
+				console.log("My device's locale:", Localization.locale, '-->', locale)
+				let url = 'https://blog-imki123-backend.herokuapp.com/catbook/translate/' + locale + '/' + text
+				//번역하기
+
+				Axios.get(url)
 					.then((translated) => {
 						console.log(translated)
-						translated = translated.split('/')
+						translated = translated.data.split('__')
 
 						res.data[0].breeds[0].temperament = translated[0]
 						res.data[0].breeds[0].description = translated[1]
@@ -127,8 +136,7 @@ export default function App() {
 					.catch((e) => {
 						console.log(e)
 						setCat(res.data[0])
-					}) */
-				setCat(res.data[0])
+					})
 			} else {
 				setImageUri(null)
 				setCat('noInfo')
