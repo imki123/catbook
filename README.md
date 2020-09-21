@@ -9,8 +9,8 @@ Set your own keys.
 # How to use
 Just ```expo start```
 
-If you need publish App, ```expo publish```  
-If you need build native App, ```expo build:android``` or ```expo build:ios```  
-If you need build web App, ```expo build:web``` or using gh-pages ```npm run deploy```
+If publish App, ```expo publish```  
+If build native App, ```expo build:android``` or ```expo build:ios```  
+If build web App, ```expo build:web``` or using gh-pages ```npm run deploy```
 
 ### Thank you :D
