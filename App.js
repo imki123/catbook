@@ -65,7 +65,6 @@ export default function App() {
 
 	useEffect(() => {
 		//고양이 종류 바뀌면 작동. 이미지 새로 가져오기
-		console.log('useEffect, breed:', breed)
 		if (breed === null) {
 			//null이면 아무것도 안함. 메인이미지.
 		} else {
@@ -75,7 +74,6 @@ export default function App() {
 
 	//찾기 버튼 클릭시
 	const handleButton = () => {
-		console.log('handleButton')
 		if (breed === null) {
 			//null이면 랜덤으로 설정
 			setBreed('random')
@@ -126,7 +124,7 @@ export default function App() {
 
 				Axios.get(url)
 					.then((translated) => {
-						console.log(translated)
+						//console.log(translated)
 						translated = translated.data.split('__')
 
 						res.data[0].breeds[0].temperament = translated[0]
