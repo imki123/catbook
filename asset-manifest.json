@@ -1,24 +1,24 @@
 {
   "files": {
-    "app.js": "/catbook/static/js/app.41659436.chunk.js",
-    "app.js.map": "/catbook/static/js/app.41659436.chunk.js.map",
+    "app.js": "/catbook/static/js/app.79ffbc1b.chunk.js",
+    "app.js.map": "/catbook/static/js/app.79ffbc1b.chunk.js.map",
     "runtime~app.js": "/catbook/static/js/runtime~app.4e055ef8.js",
     "runtime~app.js.map": "/catbook/static/js/runtime~app.4e055ef8.js.map",
-    "static/js/2.d1cf0f02.chunk.js": "/catbook/static/js/2.d1cf0f02.chunk.js",
-    "static/js/2.d1cf0f02.chunk.js.map": "/catbook/static/js/2.d1cf0f02.chunk.js.map",
+    "static/js/2.efb94a76.chunk.js": "/catbook/static/js/2.efb94a76.chunk.js",
+    "static/js/2.efb94a76.chunk.js.map": "/catbook/static/js/2.efb94a76.chunk.js.map",
     "favicon-16.png": "/catbook/favicon-16.png",
     "favicon-32.png": "/catbook/favicon-32.png",
     "favicon.ico": "/catbook/favicon.ico",
     "index.html": "/catbook/index.html",
     "manifest.json": "/catbook/manifest.json",
     "serve.json": "/catbook/serve.json",
-    "static/js/2.d1cf0f02.chunk.js.LICENSE.txt": "/catbook/static/js/2.d1cf0f02.chunk.js.LICENSE.txt",
+    "static/js/2.efb94a76.chunk.js.LICENSE.txt": "/catbook/static/js/2.efb94a76.chunk.js.LICENSE.txt",
     "static/media/dog_main.png": "/catbook/static/media/dog_main.d60d4c9c.png",
     "static/media/main.png": "/catbook/static/media/main.39efc8fa.png"
   },
   "entrypoints": [
     "static/js/runtime~app.4e055ef8.js",
-    "static/js/2.d1cf0f02.chunk.js",
-    "static/js/app.41659436.chunk.js"
+    "static/js/2.efb94a76.chunk.js",
+    "static/js/app.79ffbc1b.chunk.js"
   ]
 }
