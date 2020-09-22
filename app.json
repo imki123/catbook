@@ -28,7 +28,7 @@
     },
     "android": {
       "package": "com.github.imki123",
-      "versionCode": 7,
+      "versionCode": 8,
       "permissions": []
     },
     "description": "Cat book publish!",
