@@ -2,10 +2,6 @@
 This is a simple Catbook made by expo.  
 https://imki123.github.io/catbook/
 
-### notice
-There is an env.js file. There are api keys; CAT_API_KEY, GOOGLE_API_KEY
-Set your own keys.
-
 # How to use
 Just ```expo start```
 
