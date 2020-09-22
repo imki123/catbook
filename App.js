@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Text, View, Image, TouchableOpacity, Alert, BackHandler, SafeAreaView, ScrollView } from 'react-native'
 import Select from 'react-native-picker-select'
+import { Picker } from '@react-native-community/picker'
 import axios from 'axios'
 import Emoji from 'react-native-emoji'
 import { styles, SelectStyles } from './styles.js'
@@ -14,7 +15,7 @@ export default function App() {
 	const [whatBook, setWhatBook] = useState('cat') //book 선택
 	const [imageUri, setImageUri] = useState(null) //이미지 url
 	const [breeds, setBreeds] = useState(null) //종 리스트
-	const [breed, setBreed] = useState(null) //선택한 고양이 종류
+	const [breed, setBreed] = useState('') //선택한 고양이 종류
 	const [cat, setCat] = useState(null) //고양이 정보
 	const [randomable, setRandomable] = useState(false) //랜덤검색 가능여부
 
@@ -51,7 +52,7 @@ export default function App() {
 					onPress: () => {
 						setImageUri(null)
 						setCat(null)
-						setBreed(null)
+						setBreed('')
 						setWhatBook('cat')
 						BackHandler.exitApp()
 						backHandler.remove()
@@ -65,7 +66,7 @@ export default function App() {
 
 	useEffect(() => {
 		//고양이 종류 바뀌면 작동. 이미지 새로 가져오기
-		if (breed === null) {
+		if (breed === '') {
 			//null이면 아무것도 안함. 메인이미지.
 		} else {
 			searchCatAsync()
@@ -161,9 +162,6 @@ export default function App() {
 					<Image source={{ uri: imageUri }} style={styles.image} />
 				)}
 
-				{/* 고양이 종 목록 */}
-				{breeds && <Select placeholder={{}} items={breeds} style={SelectStyles} onValueChange={(value, index) => setBreed(value)} />}
-
 				{/* 고양이 설명 */}
 				{cat && (
 					<>
@@ -193,6 +191,20 @@ export default function App() {
 							</View>
 						)}
 					</>
+				)}
+
+				{/* 고양이 종 목록 */}
+				{/*breeds && <Select placeholder={{}} items={breeds} style={SelectStyles} onValueChange={(value, index) => setBreed(value)} />*/}
+
+				{/* 고양이 종 목록 */}
+				{breeds && (
+					<Picker selectedValue={breed} style={styles.picker} onValueChange={(value, index) => {
+						setBreed(value)
+					}}>
+						{breeds.map((i) => (
+							<Picker.Item key={i.label} label={i.label} value={i.value} />
+						))}
+					</Picker>
 				)}
 
 				{/* 찾기 버튼 */}

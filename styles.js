@@ -63,30 +63,10 @@ let styles = StyleSheet.create({
 		color: 'blue',
 		padding: 10,
 	},
-})
-
-const SelectStyles = StyleSheet.create({
-	//셀렉트 박스 스타일
-	inputIOS: {
-		fontSize: 20,
-		paddingVertical: 12,
-		paddingHorizontal: 10,
-		borderWidth: 1,
-		borderColor: 'gray',
-		borderRadius: 4,
-		color: 'black',
+	picker: {
 		width: screenWidth -100,
 		maxWidth: 500,
-		alignSelf: 'center',
-		paddingRight: 30, // to ensure the text is never behind the icon
-	},
-	inputAndroid: {
-		fontSize: 20,
-		width: screenWidth -100,
-		maxWidth: 500,
-		alignSelf: 'center',
-		color: 'black',
-	},
+	}
 })
 
-export { styles, SelectStyles }
+export { styles }
