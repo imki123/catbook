@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Text, View, Image, TouchableOpacity, Alert, BackHandler, SafeAreaView, ScrollView } from 'react-native'
-import Select from 'react-native-picker-select'
 import { Picker } from '@react-native-community/picker'
-import axios from 'axios'
 import Emoji from 'react-native-emoji'
 import { styles, SelectStyles } from './styles.js'
 import * as Localization from 'expo-localization'
@@ -10,6 +8,7 @@ import Axios from 'axios'
 
 //구글번역기
 const locale = Localization.locale.substring(0, 2)
+console.log("My device's locale:", Localization.locale, '-->', locale)
 
 export default function App() {
 	const [whatBook, setWhatBook] = useState('cat') //book 선택
@@ -18,14 +17,41 @@ export default function App() {
 	const [breed, setBreed] = useState('') //선택한 고양이 종류
 	const [cat, setCat] = useState(null) //고양이 정보
 	const [randomable, setRandomable] = useState(false) //랜덤검색 가능여부
+	const [stack, setStack] = useState([]) //검색 히스토리
 
+	//백버튼 종료 확인하기
+	const backAction = () => {
+		Alert.alert('Catbook 종료', 'Catbook을 종료하시겠어요?', [
+			{
+				text: 'Cancel',
+				onPress: () => {
+					console.log('canceled')
+					return false
+				},
+				style: 'cancel',
+			},
+			{
+				text: 'Yes',
+				onPress: () => {
+					setImageUri(null)
+					setCat(null)
+					setBreed('')
+					setWhatBook('cat')
+					BackHandler.exitApp()
+					backHandler.remove()
+					return true
+				},
+			},
+		])
+	}
+	const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction)
 	useEffect(() => {
 		//고양이종 리스트 가져오기. 한번만
 		let url = 'https://api.thecatapi.com/v1/breeds'
 		if (whatBook === 'cat') url = 'https://api.thecatapi.com/v1/breeds'
 		else if (whatBook === 'dog') url = 'https://api.thedogapi.com/v1/breeds'
 
-		axios(url).then((res) => {
+		Axios(url).then((res) => {
 			const items = [{ label: '랜덤', value: 'random' }]
 			for (let i = 0; i < res.data.length; i++) {
 				items.push({
@@ -39,35 +65,9 @@ export default function App() {
 	}, [whatBook])
 
 	useEffect(() => {
-		//백버튼 종료 확인하기
-		const backAction = () => {
-			Alert.alert('Catbook 종료', 'Catbook을 종료하시겠어요?', [
-				{
-					text: 'Cancel',
-					onPress: () => console.log('canceled'),
-					style: 'cancel',
-				},
-				{
-					text: 'Yes',
-					onPress: () => {
-						setImageUri(null)
-						setCat(null)
-						setBreed('')
-						setWhatBook('cat')
-						BackHandler.exitApp()
-						backHandler.remove()
-					},
-				},
-			])
-			return true
-		}
-		const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction)
-	})
-
-	useEffect(() => {
 		//고양이 종류 바뀌면 작동. 이미지 새로 가져오기
 		if (breed === '') {
-			//null이면 아무것도 안함. 메인이미지.
+			//''이면 아무것도 안함. 메인이미지.
 		} else {
 			searchCatAsync()
 		}
@@ -76,7 +76,7 @@ export default function App() {
 	//찾기 버튼 클릭시
 	const handleButton = () => {
 		if (breed === '') {
-			//null이면 랜덤으로 설정
+			//''이면 랜덤으로 설정
 			setBreed('random')
 		} else {
 			searchCatAsync()
@@ -109,6 +109,10 @@ export default function App() {
 			if (res.data[0]) {
 				setImageUri(res.data[0].url)
 
+				//검색 기록 추가하기 stack
+				res.data[0].animal = whatBook
+				setStack([res.data[0]].concat(stack))
+
 				//번역할 텍스트 설정하기
 				let text = ''
 				if (res.data[0].breeds[0].temperament) {
@@ -118,7 +122,6 @@ export default function App() {
 					text += '__' + res.data[0].breeds[0].description
 				}
 
-				console.log("My device's locale:", Localization.locale, '-->', locale)
 				let url = 'https://blog-imki123-backend.herokuapp.com/catbook/translate/' + locale + '/' + text
 				//번역하기
 
@@ -141,6 +144,13 @@ export default function App() {
 			}
 		})
 	}
+
+	//검색 기록 클릭 시 이미지랑 정보 보여주기
+	const pressStack = i => {
+		setImageUri(stack[i].url)
+		setCat(stack[i])
+	}
+
 	return (
 		<SafeAreaView style={styles.container}>
 			<ScrollView contentContainerStyle={styles.contentContainer} centerContent={true}>
@@ -194,9 +204,6 @@ export default function App() {
 				)}
 
 				{/* 고양이 종 목록 */}
-				{/*breeds && <Select placeholder={{}} items={breeds} style={SelectStyles} onValueChange={(value, index) => setBreed(value)} />*/}
-
-				{/* 고양이 종 목록 */}
 				{breeds && (
 					<Picker selectedValue={breed} style={styles.picker} onValueChange={(value, index) => {
 						setBreed(value)
@@ -218,7 +225,7 @@ export default function App() {
 						style={styles.changeBookText}
 						onPress={() => {
 							whatBook === 'cat' ? setWhatBook('dog') : setWhatBook('cat')
-							setBreed(null)
+							setBreed('')
 							setImageUri(null)
 							setCat(null)
 							setRandomable(false)
@@ -227,7 +234,26 @@ export default function App() {
 						{whatBook === 'cat' ? '강아지 좋아해?' : '고양이 보러갈래?'}
 					</Text>
 				</View>
+
+				
+				<View style={styles.stackView}>
+					{stack.length > 0 &&
+					<Text style={styles.stackTitle}>
+							{whatBook === 'cat' ? '찾아본 고양이' : '찾아본 강아지'}
+					</Text>}
+					{stack.map((i,idx) => 
+						(whatBook === i.animal) && 
+						<TouchableOpacity style={styles.stackFlex} key={idx} onPress={() => pressStack(idx)}>
+							<Image source={{ uri: i.url }} style={styles.stackImg} />
+							<Text style={styles.stackText} >
+								{i.breeds[0].name}
+							</Text>
+						</TouchableOpacity>
+					)}
+				</View>
+
 			</ScrollView>
 		</SafeAreaView>
 	)
 }
+

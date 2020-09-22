@@ -68,7 +68,35 @@ let styles = StyleSheet.create({
 		maxWidth: 500,
 		height: 30,
 		backgroundColor: '#eee',
-	}
+	},
+	stackTitle : {
+		width: '100%',
+		fontSize: 16,
+		color: 'black',
+		textAlign: 'left'
+	},
+	stackView : {
+		width: screenWidth -100,
+		maxWidth: 500,
+		textAlign: 'left',
+	},
+	stackFlex: {
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'flex-start',
+		alignItems: 'center',
+	},
+	stackImg : {
+		width: 50,
+		height: 50,
+		resizeMode: 'contain',
+	},
+	stackText : {
+		margin: 0,
+		fontSize: 16,
+		color: 'blue',
+		paddingLeft: 12,
+	},
 })
 
 export { styles }
