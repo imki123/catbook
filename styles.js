@@ -31,8 +31,17 @@ let styles = StyleSheet.create({
 		width: '100%',
 		height: 300,
 		resizeMode: 'contain',
+		marginBottom: 10,
 	},
 
+	picker: {
+		width: screenWidth -100,
+		maxWidth: 500,
+		height: 30,
+		backgroundColor: '#eee',
+		marginTop: 10,
+		marginBottom: 10,
+	},
 	button: {
 		backgroundColor: 'blue',
 		paddingHorizontal: 20,
@@ -52,7 +61,8 @@ let styles = StyleSheet.create({
 		fontSize: 16,
 	},
 	changeBookView: {
-		width: '100%',
+		width: screenWidth,
+		maxWidth: 600,
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'flex-end',
@@ -62,12 +72,6 @@ let styles = StyleSheet.create({
 		fontSize: 16,
 		color: 'blue',
 		padding: 10,
-	},
-	picker: {
-		width: screenWidth -100,
-		maxWidth: 500,
-		height: 30,
-		backgroundColor: '#eee',
 	},
 	stackTitle : {
 		width: '100%',
