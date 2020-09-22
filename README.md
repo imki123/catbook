@@ -1,5 +1,5 @@
 # catbook
-This is a simple Catbook made with expo.
+This is a simple Catbook made with expo.  
 https://imki123.github.io/catbook/
 
 # How to use
