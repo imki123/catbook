@@ -42,7 +42,7 @@ export default function App() {
 			return true
 		}
 		const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction)
-		
+
 		return () => backHandler.remove()
 	}, [])
 
@@ -91,7 +91,7 @@ export default function App() {
 			//랜덤 이미지 가져오기
 			if (randomable) {
 				//랜덤검색이 가능할때만
-				let num = Math.floor(Math.random() * breeds.length) //고양이 종류만큼 정수 난수 생성
+				let num = Math.floor(Math.random() * breeds.length) + 1 //고양이 종류만큼 정수 난수 생성 0번 제외
 				searchBreed = breeds[num].value
 				console.log('searchCatAsync, random breed:', searchBreed)
 			}
