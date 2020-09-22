@@ -19,32 +19,35 @@ export default function App() {
 	const [randomable, setRandomable] = useState(false) //랜덤검색 가능여부
 	const [stack, setStack] = useState([]) //검색 히스토리
 
-	//백버튼 종료 확인하기
-	const backAction = () => {
-		Alert.alert('Catbook 종료', 'Catbook을 종료하시겠어요?', [
-			{
-				text: 'Cancel',
-				onPress: () => {
-					console.log('canceled')
-					return false
+	useEffect(() => {
+		//백버튼 종료 확인하기 useEffect에서 동작해야함
+		const backAction = () => {
+			Alert.alert('Catbook 종료', 'Catbook을 종료하시겠어요?', [
+				{
+					text: 'Cancel',
+					onPress: () => {
+						console.log('canceled')
+					},
+					style: 'cancel',
 				},
-				style: 'cancel',
-			},
-			{
-				text: 'Yes',
-				onPress: () => {
-					setImageUri(null)
-					setCat(null)
-					setBreed('')
-					setWhatBook('cat')
-					BackHandler.exitApp()
-					backHandler.remove()
-					return true
+				{
+					text: 'Yes',
+					onPress: () => {
+						setImageUri(null)
+						setCat(null)
+						setBreed('')
+						setWhatBook('cat')
+						BackHandler.exitApp()
+						backHandler.remove()
+						
+					},
 				},
-			},
-		])
-	}
-	const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction)
+			])
+			return true
+		}
+		const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction)
+	})
+
 	useEffect(() => {
 		//고양이종 리스트 가져오기. 한번만
 		let url = 'https://api.thecatapi.com/v1/breeds'
@@ -146,7 +149,7 @@ export default function App() {
 	}
 
 	//검색 기록 클릭 시 이미지랑 정보 보여주기
-	const pressStack = i => {
+	const pressStack = (i) => {
 		setImageUri(stack[i].url)
 		setCat(stack[i])
 	}
@@ -205,9 +208,13 @@ export default function App() {
 
 				{/* 고양이 종 목록 */}
 				{breeds && (
-					<Picker selectedValue={breed} style={styles.picker} onValueChange={(value, index) => {
-						setBreed(value)
-					}}>
+					<Picker
+						selectedValue={breed}
+						style={styles.picker}
+						onValueChange={(value, index) => {
+							setBreed(value)
+						}}
+					>
 						{breeds.map((i) => (
 							<Picker.Item key={i.label} label={i.label} value={i.value} />
 						))}
@@ -235,25 +242,19 @@ export default function App() {
 					</Text>
 				</View>
 
-				
 				<View style={styles.stackView}>
-					{stack.length > 0 &&
-					<Text style={styles.stackTitle}>
-							{whatBook === 'cat' ? '찾아본 고양이' : '찾아본 강아지'}
-					</Text>}
-					{stack.map((i,idx) => 
-						(whatBook === i.animal) && 
-						<TouchableOpacity style={styles.stackFlex} key={idx} onPress={() => pressStack(idx)}>
-							<Image source={{ uri: i.url }} style={styles.stackImg} />
-							<Text style={styles.stackText} >
-								{i.breeds[0].name}
-							</Text>
-						</TouchableOpacity>
+					{stack.length > 0 && <Text style={styles.stackTitle}>{whatBook === 'cat' ? '찾아본 고양이' : '찾아본 강아지'}</Text>}
+					{stack.map(
+						(i, idx) =>
+							whatBook === i.animal && (
+								<TouchableOpacity style={styles.stackFlex} key={idx} onPress={() => pressStack(idx)}>
+									<Image source={{ uri: i.url }} style={styles.stackImg} />
+									<Text style={styles.stackText}>{i.breeds[0].name}</Text>
+								</TouchableOpacity>
+							),
 					)}
 				</View>
-
 			</ScrollView>
 		</SafeAreaView>
 	)
 }
-
