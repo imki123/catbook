@@ -75,7 +75,7 @@ export default function App() {
 
 	//찾기 버튼 클릭시
 	const handleButton = () => {
-		if (breed === null) {
+		if (breed === '') {
 			//null이면 랜덤으로 설정
 			setBreed('random')
 		} else {

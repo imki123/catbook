@@ -66,6 +66,8 @@ let styles = StyleSheet.create({
 	picker: {
 		width: screenWidth -100,
 		maxWidth: 500,
+		height: 30,
+		backgroundColor: '#eee',
 	}
 })
 
