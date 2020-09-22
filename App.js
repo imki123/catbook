@@ -25,9 +25,7 @@ export default function App() {
 			Alert.alert('Catbook 종료', 'Catbook을 종료하시겠어요?', [
 				{
 					text: 'Cancel',
-					onPress: () => {
-						console.log('canceled')
-					},
+					onPress: () => null,
 					style: 'cancel',
 				},
 				{
@@ -38,15 +36,15 @@ export default function App() {
 						setBreed('')
 						setWhatBook('cat')
 						BackHandler.exitApp()
-						backHandler.remove()
-						
 					},
 				},
 			])
 			return true
 		}
 		const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction)
-	})
+		
+		return () => backHandler.remove()
+	}, [])
 
 	useEffect(() => {
 		//고양이종 리스트 가져오기. 한번만
