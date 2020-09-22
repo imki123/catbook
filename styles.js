@@ -6,22 +6,23 @@ const screenWidth = Math.round(Dimensions.get('window').width)
 const screenHeight = Math.round(Dimensions.get('window').height)
 
 let styles = StyleSheet.create({
-	container: {
+	safeContainer: {
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
 		marginTop: Constants.statusBarHeight,
-		width: screenWidth,
-		maxWidth: 600,
-		margin: 'auto',
 	},
 	contentContainer: {
 		flexGrow: 1,
 		alignItems: 'center',
+		justifyContent: 'space-between',
+	},
+	container: {
+		flex: 1,
+		alignItems: 'center',
 		justifyContent: 'center',
 		width: screenWidth,
 		maxWidth: 600,
-		margin: 'auto',
 	},
 	title: {
 		fontSize: 30,
@@ -35,7 +36,7 @@ let styles = StyleSheet.create({
 	},
 
 	picker: {
-		width: screenWidth -100,
+		width: screenWidth - 100,
 		maxWidth: 500,
 		height: 30,
 		backgroundColor: '#eee',
@@ -54,7 +55,7 @@ let styles = StyleSheet.create({
 	},
 	textContainer: {
 		textAlign: 'left',
-		width: screenWidth -100,
+		width: screenWidth - 100,
 		maxWidth: 500,
 	},
 	contentText: {
@@ -68,19 +69,19 @@ let styles = StyleSheet.create({
 		justifyContent: 'flex-end',
 	},
 	changeBookText: {
-    	margin: 0,
+		margin: 0,
 		fontSize: 16,
 		color: 'blue',
 		padding: 10,
 	},
-	stackTitle : {
+	stackTitle: {
 		width: '100%',
 		fontSize: 16,
 		color: 'black',
-		textAlign: 'left'
+		textAlign: 'left',
 	},
-	stackView : {
-		width: screenWidth -100,
+	stackView: {
+		width: screenWidth - 100,
 		maxWidth: 500,
 		textAlign: 'left',
 	},
@@ -90,17 +91,41 @@ let styles = StyleSheet.create({
 		justifyContent: 'flex-start',
 		alignItems: 'center',
 	},
-	stackImg : {
+	stackImg: {
 		width: 50,
 		height: 50,
 		resizeMode: 'contain',
 	},
-	stackText : {
+	stackText: {
 		margin: 0,
 		fontSize: 16,
 		color: 'blue',
 		paddingLeft: 12,
 	},
+	footer: {
+		width: screenWidth,
+		maxWidth: 600,
+		marginBottom: 4,
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	plainText: {
+		fontSize: 14,
+	},
+	linkText: {
+		margin: 0,
+		fontSize: 14,
+		color: 'blue',
+		textDecorationLine: 'underline',
+	},
+	githubImg: {
+		width: 20,
+		height: 20,
+		marginHorizontal: 4,
+		resizeMode: 'contain',
+	}
 })
 
 export { styles }

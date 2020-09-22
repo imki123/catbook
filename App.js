@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { styles, SelectStyles } from './styles.js'
 import { Text, View, Image, TouchableOpacity, Alert, BackHandler, SafeAreaView, ScrollView } from 'react-native'
 import { Picker } from '@react-native-community/picker'
-import Emoji from 'react-native-emoji'
-import { styles, SelectStyles } from './styles.js'
 import * as Localization from 'expo-localization'
+import * as Linking from 'expo-linking'
+
+import Emoji from 'react-native-emoji'
 import Axios from 'axios'
 
 //구글번역기
@@ -153,8 +155,9 @@ export default function App() {
 	}
 
 	return (
-		<SafeAreaView style={styles.container}>
+		<SafeAreaView style={styles.safeContainer}>
 			<ScrollView contentContainerStyle={styles.contentContainer} centerContent={true}>
+				<View style={styles.container}>
 				{/* Catbook */}
 				{whatBook === 'cat' ? (
 					<Text style={styles.title}>
@@ -252,6 +255,12 @@ export default function App() {
 							),
 					)}
 				</View>
+				</View>
+				<TouchableOpacity style={styles.footer} >
+					<Text style={styles.plainText}>made By </Text>
+					<Text style={styles.linkText} onPress={() => Linking.openURL('https://github.com/Imki123')}>imki123</Text> 
+					<Image source={require('./assets/github_small.png')} style={styles.githubImg} />
+				</TouchableOpacity>
 			</ScrollView>
 		</SafeAreaView>
 	)
