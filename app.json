@@ -3,7 +3,7 @@
 		"name": "Catbook",
 		"slug": "Catbook",
 		"platforms": ["ios", "android", "web"],
-		"version": "1.0.0",
+		"version": "1.0.9",
 		"orientation": "portrait",
 		"icon": "./assets/icon.png",
 		"splash": {
@@ -22,10 +22,10 @@
 		},
 		"android": {
 			"package": "com.github.imki123",
-			"versionCode": 8,
+			"versionCode": 9,
 			"permissions": []
 		},
-		"description": "Catbook published!",
+		"description": "귀여운 고양이🐈와 강아지🐕가 사진이 듬뿍! Catbook에서 힐링하세요~😄",
 		"githubUrl": "https://github.com/imki123/catbook"
 	}
 }

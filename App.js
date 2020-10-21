@@ -158,107 +158,107 @@ export default function App() {
 		<SafeAreaView style={styles.safeContainer}>
 			<ScrollView contentContainerStyle={styles.contentContainer} centerContent={true}>
 				<View style={styles.container}>
-				{/* Catbook */}
-				{whatBook === 'cat' ? (
-					<Text style={styles.title}>
-						Catbook <Emoji name="cat2" style={{ fontSize: 20 }} />
-					</Text>
-				) : (
-					<Text style={styles.title}>
-						Dogbook <Emoji name="dog2" style={{ fontSize: 20 }} />
-					</Text>
-				)}
-
-				{/* 고양이 이미지 */}
-				{imageUri === null ? (
-					<>{whatBook === 'cat' ? <Image source={require('./assets/main.png')} style={styles.image} /> : <Image source={require('./assets/dog_main.png')} style={styles.image} />}</>
-				) : (
-					<Image source={{ uri: imageUri }} style={styles.image} />
-				)}
-
-				{/* 고양이 설명 */}
-				{cat && (
-					<>
-						{cat != 'noInfo' ? (
-							<View style={styles.textContainer}>
-								<Text style={styles.contentText}>- 종류: {cat.breeds[0].name}</Text>
-								{cat.breeds[0].alt_names != undefined && <Text style={styles.contentText}>- 별명: {cat.breeds[0].alt_names}</Text>}
-								{cat.breeds[0].origin != undefined && <Text style={styles.contentText}>- 출신지: {cat.breeds[0].origin}</Text>}
-								{cat.breeds[0].adaptability != undefined && (
-									<Text style={styles.contentText}>
-										- 적응력 / 애정도 / 에너지: {cat.breeds[0].adaptability} / {cat.breeds[0].affection_level} / {cat.breeds[0].energy_level}
-									</Text>
-								)}
-								{cat.breeds[0].child_friendly != undefined && (
-									<Text style={styles.contentText}>
-										- 어린이친화력 / 강아지친화력: {cat.breeds[0].child_friendly} / {cat.breeds[0].dog_friendly}
-									</Text>
-								)}
-								{cat.breeds[0].temperament != undefined && <Text style={styles.contentText}>- 성격: {cat.breeds[0].temperament}</Text>}
-								{cat.breeds[0].description != undefined && <Text style={styles.contentText}>- 특징: {cat.breeds[0].description}</Text>}
-							</View>
-						) : (
-							<View style={styles.textContainer}>
-								<Text style={{ textAlign: 'center' }}>
-									찾는 정보가 없어요 <Emoji name="sob" style={{ fontSize: 20 }} />
-								</Text>
-							</View>
-						)}
-					</>
-				)}
-
-				{/* 고양이 종 목록 */}
-				{breeds && (
-					<Picker
-						selectedValue={breed}
-						style={styles.picker}
-						onValueChange={(value, index) => {
-							setBreed(value)
-						}}
-					>
-						{breeds.map((i) => (
-							<Picker.Item key={i.label} label={i.label} value={i.value} />
-						))}
-					</Picker>
-				)}
-
-				{/* 찾기 버튼 */}
-				<TouchableOpacity onPress={handleButton} style={styles.button}>
-					<Text style={styles.buttonText}>{whatBook === 'cat' ? '고양이 찾기' : '강아지 찾기'}</Text>
-				</TouchableOpacity>
-
-				{/* Cat Dog 전환 */}
-				<View style={styles.changeBookView}>
-					<Text
-						style={styles.changeBookText}
-						onPress={() => {
-							whatBook === 'cat' ? setWhatBook('dog') : setWhatBook('cat')
-							setBreed('')
-							setImageUri(null)
-							setCat(null)
-							setRandomable(false)
-						}}
-					>
-						{whatBook === 'cat' ? '강아지 좋아해?' : '고양이 보러갈래?'}
-					</Text>
-				</View>
-
-				<View style={styles.stackView}>
-					{stack.length > 0 && <Text style={styles.stackTitle}>{whatBook === 'cat' ? '찾아본 고양이' : '찾아본 강아지'}</Text>}
-					{stack.map(
-						(i, idx) =>
-							whatBook === i.animal && (
-								<TouchableOpacity style={styles.stackFlex} key={idx} onPress={() => pressStack(idx)}>
-									<Image source={{ uri: i.url }} style={styles.stackImg} />
-									<Text style={styles.stackText}>{i.breeds[0].name}</Text>
-								</TouchableOpacity>
-							),
+					{/* Catbook */}
+					{whatBook === 'cat' ? (
+						<Text style={styles.title}>
+							Catbook <Emoji name="cat2" style={{ fontSize: 20 }} />
+						</Text>
+					) : (
+						<Text style={styles.title}>
+							Dogbook <Emoji name="dog2" style={{ fontSize: 20 }} />
+						</Text>
 					)}
-				</View>
+
+					{/* 고양이 이미지 */}
+					{imageUri === null ? (
+						<>{whatBook === 'cat' ? <Image source={require('./assets/main.png')} style={styles.image} /> : <Image source={require('./assets/dog_main.png')} style={styles.image} />}</>
+					) : (
+						<Image source={{ uri: imageUri }} style={styles.image} />
+					)}
+
+					{/* 고양이 설명 */}
+					{cat && (
+						<>
+							{cat != 'noInfo' ? (
+								<View style={styles.textContainer}>
+									<Text style={styles.contentText}>- 종류: {cat.breeds[0].name}</Text>
+									{cat.breeds[0].alt_names != undefined && <Text style={styles.contentText}>- 별명: {cat.breeds[0].alt_names}</Text>}
+									{cat.breeds[0].origin != undefined && <Text style={styles.contentText}>- 출신지: {cat.breeds[0].origin}</Text>}
+									{cat.breeds[0].adaptability != undefined && (
+										<Text style={styles.contentText}>
+											- 적응력 / 애정도 / 에너지: {cat.breeds[0].adaptability} / {cat.breeds[0].affection_level} / {cat.breeds[0].energy_level}
+										</Text>
+									)}
+									{cat.breeds[0].child_friendly != undefined && (
+										<Text style={styles.contentText}>
+											- 어린이친화력 / 강아지친화력: {cat.breeds[0].child_friendly} / {cat.breeds[0].dog_friendly}
+										</Text>
+									)}
+									{cat.breeds[0].temperament != undefined && <Text style={styles.contentText}>- 성격: {cat.breeds[0].temperament}</Text>}
+									{cat.breeds[0].description != undefined && <Text style={styles.contentText}>- 특징: {cat.breeds[0].description}</Text>}
+								</View>
+							) : (
+								<View style={styles.textContainer}>
+									<Text style={{ textAlign: 'center' }}>
+										찾는 정보가 없어요 <Emoji name="sob" style={{ fontSize: 20 }} />
+									</Text>
+								</View>
+							)}
+						</>
+					)}
+
+					{/* 고양이 종 목록 */}
+					{breeds && (
+						<Picker
+							selectedValue={breed}
+							style={styles.picker}
+							onValueChange={(value, index) => {
+								setBreed(value)
+							}}
+						>
+							{breeds.map((i) => (
+								<Picker.Item key={i.label} label={i.label} value={i.value} />
+							))}
+						</Picker>
+					)}
+
+					{/* 찾기 버튼 */}
+					<TouchableOpacity onPress={handleButton} style={styles.button}>
+						<Text style={styles.buttonText}>{whatBook === 'cat' ? '고양이 찾기' : '강아지 찾기'}</Text>
+					</TouchableOpacity>
+
+					{/* Cat Dog 전환 */}
+					<View style={styles.changeBookView}>
+						<Text
+							style={styles.changeBookText}
+							onPress={() => {
+								whatBook === 'cat' ? setWhatBook('dog') : setWhatBook('cat')
+								setBreed('')
+								setImageUri(null)
+								setCat(null)
+								setRandomable(false)
+							}}
+						>
+							{whatBook === 'cat' ? '강아지 좋아해?' : '고양이 보러갈래?'}
+						</Text>
+					</View>
+
+					<View style={styles.stackView}>
+						{stack.length > 0 && <Text style={styles.stackTitle}>{whatBook === 'cat' ? '찾아본 고양이' : '찾아본 강아지'}</Text>}
+						{stack.map(
+							(i, idx) =>
+								whatBook === i.animal && (
+									<TouchableOpacity style={styles.stackFlex} key={idx} onPress={() => pressStack(idx)}>
+										<Image source={{ uri: i.url }} style={styles.stackImg} />
+										<Text style={styles.stackText}>{i.breeds[0].name}</Text>
+									</TouchableOpacity>
+								),
+						)}
+					</View>
 				</View>
 				<TouchableOpacity style={styles.footer} >
 					<Text style={styles.plainText}>made By </Text>
-					<Text style={styles.linkText} onPress={() => Linking.openURL('https://github.com/Imki123')}>imki123</Text> 
+					<Text style={styles.linkText} onPress={() => Linking.openURL('https://github.com/imki123')}>imki123</Text> 
 					<Image source={require('./assets/github_small.png')} style={styles.githubImg} />
 				</TouchableOpacity>
 			</ScrollView>
