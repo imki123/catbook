@@ -13,7 +13,7 @@
   "dependencies": {
     "@expo/vector-icons": "^10.0.0",
     "@react-native-community/picker": "1.6.6",
-    "axios": "0.19.2",
+    "axios": "0.21.1",
     "expo": "^39.0.0",
     "expo-cli": "3.27.6",
     "expo-constants": "~9.2.0",
