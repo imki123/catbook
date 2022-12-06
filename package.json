@@ -15,7 +15,7 @@
     "@react-native-community/picker": "1.6.6",
     "axios": "0.19.2",
     "expo": "^39.0.0",
-    "expo-cli": "3.27.6",
+    "expo-cli": "6.0.8",
     "expo-constants": "~9.2.0",
     "expo-localization": "~9.0.0",
     "gh-pages": "3.1.0",
