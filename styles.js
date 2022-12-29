@@ -1,6 +1,6 @@
-import { StyleSheet, Dimensions } from 'react-native'
 import Constants from 'expo-constants'
-import { TouchableWithoutFeedback } from 'react-native'
+import { StyleSheet, Dimensions , TouchableWithoutFeedback } from 'react-native'
+
 
 const screenWidth = Math.round(Dimensions.get('window').width)
 const screenHeight = Math.round(Dimensions.get('window').height)

@@ -1,0 +1,38 @@
+{
+	"env": {
+		"browser": true,
+		"node": true
+	},
+	"extends": ["eslint:recommended", "plugin:react-hooks/recommended", "plugin:import/recommended"],
+	"plugins": ["react", "react-native", "import"],
+	"parser": "@babel/eslint-parser",
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		}
+	},
+	"root": true,
+	"rules": {
+		"no-console": ["warn", { "allow": ["info", "error"] }],
+		"import/named": "off",
+		"import/order": [
+			"error",
+			{
+				"groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
+				"pathGroups": [
+					{
+						"pattern": "{react, react*/**}",
+						"group": "external",
+						"position": "before"
+					}
+				],
+				"pathGroupsExcludedImportTypes": ["react", "unknown"],
+				"newlines-between": "always",
+				"alphabetize": {
+					"order": "asc",
+					"caseInsensitive": true
+				}
+			}
+		]
+	}
+}

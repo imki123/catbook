@@ -1,34 +1,38 @@
 {
-  "main": "node_modules/expo/AppEntry.js",
-  "homepage": "https://imki123.github.io/catbook/",
-  "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
-    "eject": "expo eject",
-    "deploy": "gh-pages -d web-build",
-    "predeploy": "expo build:web"
-  },
-  "dependencies": {
-    "@expo/vector-icons": "^10.0.0",
-    "@react-native-community/picker": "1.6.6",
-    "axios": "0.19.2",
-    "expo": "^39.0.0",
-    "expo-cli": "3.27.6",
-    "expo-constants": "~9.2.0",
-    "expo-localization": "~9.0.0",
-    "gh-pages": "3.1.0",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.0.tar.gz",
-    "react-native-emoji": "1.8.0",
-    "react-native-power-translator": "1.1.1",
-    "react-native-web": "~0.13.7"
-  },
-  "devDependencies": {
-    "babel-preset-expo": "^8.3.0",
-    "@babel/core": "^7.8.6"
-  },
-  "private": true
+	"main": "node_modules/expo/AppEntry.js",
+	"homepage": "https://imki123.github.io/catbook/",
+	"scripts": {
+		"start": "expo start",
+		"android": "expo start --android",
+		"ios": "expo start --ios",
+		"web": "expo start --web",
+		"eject": "expo eject",
+		"deploy": "gh-pages -d web-build",
+		"predeploy": "expo build:web"
+	},
+	"dependencies": {
+		"axios": "^1.2.2",
+		"eslint": "^8.26.0",
+		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-react-hooks": "^4.6.0",
+		"eslint-plugin-react-native": "^4.0.0",
+		"expo": "^47.0.9",
+		"expo-cli": "^6.0.8",
+		"expo-constants": "^14.0.2",
+		"expo-linking": "^3.3.0",
+		"gh-pages": "3.1.0",
+		"prop-types": "^15.8.1",
+		"react": "^18.1.0",
+		"react-dom": "^18.1.0",
+		"react-native": "0.70.5",
+		"react-native-emoji": "^1.8.0",
+		"react-native-picker-select": "8.0.4",
+		"react-native-web": "^0.18.10"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.20.7",
+		"@babel/eslint-parser": "^7.19.1",
+		"babel-preset-expo": "^9.2.2"
+	},
+	"private": true
 }

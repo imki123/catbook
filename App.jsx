@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { styles, SelectStyles } from './styles.js'
-import { Text, View, Image, TouchableOpacity, Alert, BackHandler, SafeAreaView, ScrollView } from 'react-native'
-import { Picker } from '@react-native-community/picker'
-import * as Localization from 'expo-localization'
+import { useCallback, useEffect, useState } from 'react'
+
+import axios from 'axios'
 import * as Linking from 'expo-linking'
-
+import { Text, View, Image, TouchableOpacity, Alert, BackHandler, SafeAreaView, ScrollView } from 'react-native'
 import Emoji from 'react-native-emoji'
-import Axios from 'axios'
+import RNPickerSelect from 'react-native-picker-select'
 
-//구글번역기
-const locale = Localization.locale.substring(0, 2)
-console.log("My device's locale:", Localization.locale, '-->', locale)
+import { styles } from './styles.js'
+
+console.info('### ENV:', process.env.NODE_ENV)
 
 export default function App() {
 	const [whatBook, setWhatBook] = useState('cat') //book 선택
@@ -50,11 +48,9 @@ export default function App() {
 
 	useEffect(() => {
 		//고양이종 리스트 가져오기. 한번만
-		let url = 'https://api.thecatapi.com/v1/breeds'
-		if (whatBook === 'cat') url = 'https://api.thecatapi.com/v1/breeds'
-		else if (whatBook === 'dog') url = 'https://api.thedogapi.com/v1/breeds'
+		let url = `https://api.the${whatBook}api.com/v1/breeds`
 
-		Axios(url).then((res) => {
+		axios(url).then((res) => {
 			const items = [{ label: '랜덤', value: 'random' }]
 			for (let i = 0; i < res.data.length; i++) {
 				items.push({
@@ -63,7 +59,7 @@ export default function App() {
 				})
 			}
 			setBreeds(items)
-			setRandomable(true)
+			// setRandomable(true)
 		})
 	}, [whatBook])
 
@@ -74,7 +70,7 @@ export default function App() {
 		} else {
 			searchCatAsync()
 		}
-	}, [breed])
+	}, [breed, searchCatAsync])
 
 	//찾기 버튼 클릭시
 	const handleButton = () => {
@@ -87,7 +83,7 @@ export default function App() {
 	}
 
 	//고양이 정보 가져오기
-	const searchCatAsync = () => {
+	const searchCatAsync = useCallback(() => {
 		let searchBreed = breed
 		if (breed === 'random') {
 			//랜덤 이미지 가져오기
@@ -95,58 +91,33 @@ export default function App() {
 				//랜덤검색이 가능할때만
 				let num = Math.floor(Math.random() * breeds.length) + 1 //고양이 종류만큼 정수 난수 생성 0번 제외
 				searchBreed = breeds[num].value
-				console.log('searchCatAsync, random breed:', searchBreed)
 			}
 		} else {
 			//종류별 이미지 가져오기
-			console.log('searchCatAsync, breed:', searchBreed)
 		}
 
 		//이미지 및 정보 가져오기
-		let url = 'https://blog-imki123-backend.herokuapp.com/catbook/getAnimal/cat/' + searchBreed
-		if (whatBook === 'dog') url = 'https://blog-imki123-backend.herokuapp.com/catbook/getAnimal/dog/' + searchBreed
+		let url = ''
+		if (process.env.NODE_ENV === 'development') url = `${window.location.origin}/catbook/getAnimal/${whatBook}/${searchBreed}`
+		else url = `https://blog-imki123-backend.herokuapp.com/catbook/getAnimal/${whatBook}/${searchBreed}`
 
-		Axios.get(url, {
-			withCredentials: true,
-		}).then((res) => {
-			if (res.data[0]) {
-				setImageUri(res.data[0].url)
+		axios
+			.get(url, {
+				withCredentials: true,
+			})
+			.then((res) => {
+				if (res.data[0]) {
+					setImageUri(res.data[0].url)
 
-				//검색 기록 추가하기 stack
-				res.data[0].animal = whatBook
-				setStack([res.data[0]].concat(stack))
-
-				//번역할 텍스트 설정하기
-				let text = ''
-				if (res.data[0].breeds[0].temperament) {
-					text += res.data[0].breeds[0].temperament
+					//검색 기록 추가하기 stack
+					res.data[0].animal = whatBook
+					setStack([res.data[0]].concat(stack))
+				} else {
+					setImageUri(null)
+					setCat('noInfo')
 				}
-				if (res.data[0].breeds[0].description) {
-					text += '__' + res.data[0].breeds[0].description
-				}
-
-				let url = 'https://blog-imki123-backend.herokuapp.com/catbook/translate/' + locale + '/' + text
-				//번역하기
-
-				Axios.get(url)
-					.then((translated) => {
-						//console.log(translated)
-						translated = translated.data.split('__')
-
-						res.data[0].breeds[0].temperament = translated[0]
-						res.data[0].breeds[0].description = translated[1]
-						setCat(res.data[0])
-					})
-					.catch((e) => {
-						console.log(e)
-						setCat(res.data[0])
-					})
-			} else {
-				setImageUri(null)
-				setCat('noInfo')
-			}
-		})
-	}
+			})
+	}, [breed, breeds, randomable, stack, whatBook])
 
 	//검색 기록 클릭 시 이미지랑 정보 보여주기
 	const pressStack = (i) => {
@@ -209,17 +180,14 @@ export default function App() {
 
 					{/* 고양이 종 목록 */}
 					{breeds && (
-						<Picker
-							selectedValue={breed}
+						<RNPickerSelect
+							value={breed}
 							style={styles.picker}
-							onValueChange={(value, index) => {
-								setBreed(value)
+							onValueChange={(value) => {
+								// setBreed(value)
 							}}
-						>
-							{breeds.map((i) => (
-								<Picker.Item key={i.label} label={i.label} value={i.value} />
-							))}
-						</Picker>
+							items={breeds}
+						/>
 					)}
 
 					{/* 찾기 버튼 */}
@@ -256,9 +224,11 @@ export default function App() {
 						)}
 					</View>
 				</View>
-				<TouchableOpacity style={styles.footer} >
+				<TouchableOpacity style={styles.footer}>
 					<Text style={styles.plainText}>made By </Text>
-					<Text style={styles.linkText} onPress={() => Linking.openURL('https://github.com/imki123')}>imki123</Text> 
+					<Text style={styles.linkText} onPress={() => Linking.openURL('https://github.com/imki123')}>
+						imki123
+					</Text>
 					<Image source={require('./assets/github_small.png')} style={styles.githubImg} />
 				</TouchableOpacity>
 			</ScrollView>
