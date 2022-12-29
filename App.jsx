@@ -31,6 +31,17 @@ export default function App() {
 	const [open, setOpen] = useState(false)
 
 	useEffect(() => {
+		const body = document.querySelector('body')
+		if (body) {
+			if (open) {
+				body.style.overflow = 'hidden'
+			} else {
+				body.style.overflow = 'auto'
+			}
+		}
+	}, [open])
+
+	useEffect(() => {
 		//백버튼 종료 확인하기 useEffect에서 동작해야함
 		const backAction = () => {
 			Alert.alert('Catbook 종료', 'Catbook을 종료하시겠어요?', [
@@ -104,10 +115,8 @@ export default function App() {
 			if (randomable) {
 				//랜덤검색이 가능할때만
 				let num = Math.floor(Math.random() * breeds.length) + 1 //고양이 종류만큼 정수 난수 생성 0번 제외
-				searchBreed = breeds[num].value
+				searchBreed = breeds?.[num]?.value
 			}
-		} else {
-			//종류별 이미지 가져오기
 		}
 
 		//이미지 및 정보 가져오기
@@ -122,8 +131,9 @@ export default function App() {
 			.then((res) => {
 				if (res.data[0]) {
 					setImageUri(res.data[0].url)
-					// 종이름 없으면 breed로 세팅
-					if (!res.data?.[0]?.breeds?.[0]?.name) {
+					// 종이름 없으면 breed.label로 세팅
+					console.info('name:', res.data?.[0]?.breeds?.[0]?.name)
+					if (res.data?.[0]?.breeds?.[0]?.name === undefined) {
 						const finded = breeds?.find((item) => item.value === breed)
 						res.data[0].breeds = [{ name: finded.label }]
 					}
@@ -272,9 +282,20 @@ export default function App() {
 
 					<View style={styles.stackView}>
 						{stack.length > 0 && (
-							<Text style={styles.stackTitle}>
-								{whatBook === 'cat' ? '찾아본 고양이' : '찾아본 강아지'}
-							</Text>
+							<div style={styles.stackRow}>
+								<Text style={styles.stackTitle}>
+									{whatBook === 'cat' ? '찾아본 고양이' : '찾아본 강아지'}
+								</Text>
+								<Text
+									style={styles.stackText}
+									onClick={() => {
+										setStack([])
+										setImageUri('')
+									}}
+								>
+									검색기록 초기화
+								</Text>
+							</div>
 						)}
 						{stack.map(
 							(i, idx) =>

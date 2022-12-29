@@ -74,15 +74,22 @@ let styles = StyleSheet.create({
 		padding: 10,
 	},
 	stackTitle: {
-		width: '100%',
 		fontSize: 16,
 		color: 'black',
 		textAlign: 'left',
 	},
 	stackView: {
+		display: 'flex',
 		width: screenWidth - 100,
 		maxWidth: 500,
 		textAlign: 'left',
+	},
+	stackRow: {
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'flex-start',
+		alignItems: 'center',
+		gap: 10,
 	},
 	stackFlex: {
 		display: 'flex',
@@ -100,6 +107,7 @@ let styles = StyleSheet.create({
 		fontSize: 16,
 		color: 'blue',
 		paddingLeft: 12,
+		cursor: 'pointer',
 	},
 	footer: {
 		width: screenWidth,
