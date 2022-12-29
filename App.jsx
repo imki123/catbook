@@ -122,6 +122,11 @@ export default function App() {
 			.then((res) => {
 				if (res.data[0]) {
 					setImageUri(res.data[0].url)
+					// 종이름 없으면 breed로 세팅
+					if (!res.data?.[0]?.breeds?.[0]?.name) {
+						const finded = breeds?.find((item) => item.value === breed)
+						res.data[0].breeds = [{ name: finded.label }]
+					}
 
 					//검색 기록 추가하기 stack
 					res.data[0].animal = whatBook
