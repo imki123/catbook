@@ -16,6 +16,8 @@ import Emoji from 'react-native-emoji'
 import axios from 'axios'
 import * as Linking from 'expo-linking'
 
+import dogMain from './assets/dog_main.png'
+import catMain from './assets/main.png'
 import { styles } from './styles.js'
 
 console.info('### ENV:', process.env.NODE_ENV)
@@ -30,6 +32,7 @@ export default function App() {
 	const [stack, setStack] = useState([]) //검색 히스토리
 	const [open, setOpen] = useState(false)
 
+	// effect
 	useEffect(() => {
 		const body = document.querySelector('body')
 		if (body) {
@@ -131,22 +134,21 @@ export default function App() {
 			.then((res) => {
 				if (res.data[0]) {
 					setImageUri(res.data[0].url)
-					// 종이름 없으면 breed.label로 세팅
-					console.info('name:', res.data?.[0]?.breeds?.[0]?.name)
-					if (res.data?.[0]?.breeds?.[0]?.name === undefined) {
-						const finded = breeds?.find((item) => item.value === breed)
-						res.data[0].breeds = [{ name: finded.label }]
-					}
+					setCat(res.data[0])
 
 					//검색 기록 추가하기 stack
 					res.data[0].animal = whatBook
-					setStack([res.data[0]].concat(stack))
+					if (!res.data[0].breeds?.[0]?.name) {
+						const finded = breeds?.find((item) => item.value === searchBreed)
+						res.data[0].breeds = [{ name: finded?.label || searchBreed }]
+					}
+					setStack((state) => [res.data[0]].concat(state))
 				} else {
 					setImageUri(null)
 					setCat('noInfo')
 				}
 			})
-	}, [breed, breeds, randomable, stack, whatBook])
+	}, [breed, breeds, randomable, whatBook])
 
 	//검색 기록 클릭 시 이미지랑 정보 보여주기
 	const pressStack = (i) => {
@@ -176,15 +178,9 @@ export default function App() {
 					{imageUri === null ? (
 						<>
 							{whatBook === 'cat' ? (
-								<Image
-									source={require('./assets/main.png')}
-									style={styles.image}
-								/>
+								<Image source={catMain} style={styles.image} />
 							) : (
-								<Image
-									source={require('./assets/dog_main.png')}
-									style={styles.image}
-								/>
+								<Image source={dogMain} style={styles.image} />
 							)}
 						</>
 					) : (
@@ -290,7 +286,8 @@ export default function App() {
 									style={styles.stackText}
 									onClick={() => {
 										setStack([])
-										setImageUri('')
+										setCat(null)
+										setImageUri(whatBook === 'dog' ? dogMain : catMain)
 									}}
 								>
 									검색기록 초기화
@@ -306,7 +303,7 @@ export default function App() {
 										onPress={() => pressStack(idx)}
 									>
 										<Image source={{ uri: i.url }} style={styles.stackImg} />
-										<Text style={styles.stackText}>{i.breeds?.[0].name}</Text>
+										<Text style={styles.stackText}>{i.breeds?.[0]?.name}</Text>
 									</TouchableOpacity>
 								),
 						)}

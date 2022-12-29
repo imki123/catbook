@@ -10,7 +10,7 @@
 			"permissions": []
 		},
 		"ios": {
-			"buildNumber": "1.0.0",
+			"buildNumber": "1.0.10",
 			"supportsTablet": true,
 			"bundleIdentifier": "com.github.imki123"
 		},
