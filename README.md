@@ -15,13 +15,23 @@ https://imki123.github.io/catbook/
 
 Go to https://docs.expo.dev/build/setup/
 
+### Ready to build
+
 ```
 npm install -g eas-cli
 eas login
 eas build:configure
-eas build --platform android
 ```
 
-And deploy app in app store.
+Change version, versionCode, buildNumber up in app.json
+
+### Build to EAS
+
+```
+eas build --platform android
+OR eas build --platform ios
+```
+
+And deploy an app in APP STORE console.
 
 ### Thank you :D
