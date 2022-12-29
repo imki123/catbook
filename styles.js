@@ -1,9 +1,8 @@
-import Constants from 'expo-constants'
-import { StyleSheet, Dimensions , TouchableWithoutFeedback } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
 
+import Constants from 'expo-constants'
 
 const screenWidth = Math.round(Dimensions.get('window').width)
-const screenHeight = Math.round(Dimensions.get('window').height)
 
 let styles = StyleSheet.create({
 	safeContainer: {
@@ -125,7 +124,7 @@ let styles = StyleSheet.create({
 		height: 20,
 		marginHorizontal: 4,
 		resizeMode: 'contain',
-	}
+	},
 })
 
 export { styles }
