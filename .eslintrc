@@ -3,25 +3,36 @@
 		"browser": true,
 		"node": true
 	},
-	"extends": ["eslint:recommended", "plugin:react-hooks/recommended", "plugin:import/recommended"],
-	"plugins": ["react", "react-native", "import"],
+	"extends": [
+		"@react-native-community",
+		"eslint:recommended",
+		"plugin:react-hooks/recommended",
+		"plugin:import/recommended"
+	],
+	"plugins": ["react", "import"],
 	"parser": "@babel/eslint-parser",
-	"parserOptions": {
-		"ecmaFeatures": {
-			"jsx": true
-		}
-	},
 	"root": true,
 	"rules": {
+		"prettier/prettier": "off",
+		"semi": "off",
 		"no-console": ["warn", { "allow": ["info", "error"] }],
 		"import/named": "off",
 		"import/order": [
 			"error",
 			{
-				"groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
+				"groups": [
+					"builtin",
+					"external",
+					"internal",
+					"parent",
+					"sibling",
+					"index",
+					"object",
+					"type"
+				],
 				"pathGroups": [
 					{
-						"pattern": "{react, react*/**}",
+						"pattern": "{react,react*,react*/**}",
 						"group": "external",
 						"position": "before"
 					}

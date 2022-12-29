@@ -1,10 +1,20 @@
-import { useCallback, useEffect, useState } from 'react'
+/* eslint-disable react-native/no-inline-styles */
+import React, { useCallback, useEffect, useState } from 'react'
+import {
+	Text,
+	View,
+	Image,
+	TouchableOpacity,
+	Alert,
+	BackHandler,
+	SafeAreaView,
+	ScrollView,
+} from 'react-native'
+import DropDownPicker from 'react-native-dropdown-picker'
+import Emoji from 'react-native-emoji'
 
 import axios from 'axios'
 import * as Linking from 'expo-linking'
-import { Text, View, Image, TouchableOpacity, Alert, BackHandler, SafeAreaView, ScrollView } from 'react-native'
-import Emoji from 'react-native-emoji'
-import RNPickerSelect from 'react-native-picker-select'
 
 import { styles } from './styles.js'
 
@@ -18,6 +28,7 @@ export default function App() {
 	const [cat, setCat] = useState(null) //고양이 정보
 	const [randomable, setRandomable] = useState(false) //랜덤검색 가능여부
 	const [stack, setStack] = useState([]) //검색 히스토리
+	const [open, setOpen] = useState(false)
 
 	useEffect(() => {
 		//백버튼 종료 확인하기 useEffect에서 동작해야함
@@ -41,7 +52,10 @@ export default function App() {
 			])
 			return true
 		}
-		const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction)
+		const backHandler = BackHandler.addEventListener(
+			'hardwareBackPress',
+			backAction,
+		)
 
 		return () => backHandler.remove()
 	}, [])
@@ -59,7 +73,7 @@ export default function App() {
 				})
 			}
 			setBreeds(items)
-			// setRandomable(true)
+			setRandomable(true)
 		})
 	}, [whatBook])
 
@@ -97,12 +111,12 @@ export default function App() {
 		}
 
 		//이미지 및 정보 가져오기
-		let url = ''
-		if (process.env.NODE_ENV === 'development') url = `${window.location.origin}/catbook/getAnimal/${whatBook}/${searchBreed}`
-		else url = `https://blog-imki123-backend.herokuapp.com/catbook/getAnimal/${whatBook}/${searchBreed}`
-
+		const api_url =
+			process.env.NODE_ENV === 'development'
+				? 'http://localhost:4001'
+				: 'https://expressgoyoung2-production.up.railway.app'
 		axios
-			.get(url, {
+			.get(api_url + `/catbook/getAnimal/${whatBook}/${searchBreed}`, {
 				withCredentials: true,
 			})
 			.then((res) => {
@@ -127,7 +141,10 @@ export default function App() {
 
 	return (
 		<SafeAreaView style={styles.safeContainer}>
-			<ScrollView contentContainerStyle={styles.contentContainer} centerContent={true}>
+			<ScrollView
+				contentContainerStyle={styles.contentContainer}
+				centerContent={true}
+			>
 				<View style={styles.container}>
 					{/* Catbook */}
 					{whatBook === 'cat' ? (
@@ -142,7 +159,19 @@ export default function App() {
 
 					{/* 고양이 이미지 */}
 					{imageUri === null ? (
-						<>{whatBook === 'cat' ? <Image source={require('./assets/main.png')} style={styles.image} /> : <Image source={require('./assets/dog_main.png')} style={styles.image} />}</>
+						<>
+							{whatBook === 'cat' ? (
+								<Image
+									source={require('./assets/main.png')}
+									style={styles.image}
+								/>
+							) : (
+								<Image
+									source={require('./assets/dog_main.png')}
+									style={styles.image}
+								/>
+							)}
+						</>
 					) : (
 						<Image source={{ uri: imageUri }} style={styles.image} />
 					)}
@@ -150,28 +179,51 @@ export default function App() {
 					{/* 고양이 설명 */}
 					{cat && (
 						<>
-							{cat != 'noInfo' ? (
+							{cat !== 'noInfo' ? (
 								<View style={styles.textContainer}>
-									<Text style={styles.contentText}>- 종류: {cat.breeds[0].name}</Text>
-									{cat.breeds[0].alt_names != undefined && <Text style={styles.contentText}>- 별명: {cat.breeds[0].alt_names}</Text>}
-									{cat.breeds[0].origin != undefined && <Text style={styles.contentText}>- 출신지: {cat.breeds[0].origin}</Text>}
-									{cat.breeds[0].adaptability != undefined && (
+									<Text style={styles.contentText}>
+										- 종류: {cat.breeds?.[0].name}
+									</Text>
+									{cat.breeds?.[0].alt_names !== undefined && (
 										<Text style={styles.contentText}>
-											- 적응력 / 애정도 / 에너지: {cat.breeds[0].adaptability} / {cat.breeds[0].affection_level} / {cat.breeds[0].energy_level}
+											- 별명: {cat.breeds?.[0].alt_names}
 										</Text>
 									)}
-									{cat.breeds[0].child_friendly != undefined && (
+									{cat.breeds?.[0].origin !== undefined && (
 										<Text style={styles.contentText}>
-											- 어린이친화력 / 강아지친화력: {cat.breeds[0].child_friendly} / {cat.breeds[0].dog_friendly}
+											- 출신지: {cat.breeds?.[0].origin}
 										</Text>
 									)}
-									{cat.breeds[0].temperament != undefined && <Text style={styles.contentText}>- 성격: {cat.breeds[0].temperament}</Text>}
-									{cat.breeds[0].description != undefined && <Text style={styles.contentText}>- 특징: {cat.breeds[0].description}</Text>}
+									{cat.breeds?.[0].adaptability !== undefined && (
+										<Text style={styles.contentText}>
+											- 적응력 / 애정도 / 에너지: {cat.breeds?.[0].adaptability}{' '}
+											/ {cat.breeds?.[0].affection_level} /{' '}
+											{cat.breeds?.[0].energy_level}
+										</Text>
+									)}
+									{cat.breeds?.[0].child_friendly !== undefined && (
+										<Text style={styles.contentText}>
+											- 어린이친화력 / 강아지친화력:{' '}
+											{cat.breeds?.[0].child_friendly} /{' '}
+											{cat.breeds?.[0].dog_friendly}
+										</Text>
+									)}
+									{cat.breeds?.[0].temperament !== undefined && (
+										<Text style={styles.contentText}>
+											- 성격: {cat.breeds?.[0].temperament}
+										</Text>
+									)}
+									{cat.breeds?.[0].description !== undefined && (
+										<Text style={styles.contentText}>
+											- 특징: {cat.breeds?.[0].description}
+										</Text>
+									)}
 								</View>
 							) : (
 								<View style={styles.textContainer}>
 									<Text style={{ textAlign: 'center' }}>
-										찾는 정보가 없어요 <Emoji name="sob" style={{ fontSize: 20 }} />
+										찾는 정보가 없어요{' '}
+										<Emoji name="sob" style={{ fontSize: 20 }} />
 									</Text>
 								</View>
 							)}
@@ -180,19 +232,21 @@ export default function App() {
 
 					{/* 고양이 종 목록 */}
 					{breeds && (
-						<RNPickerSelect
-							value={breed}
-							style={styles.picker}
-							onValueChange={(value) => {
-								// setBreed(value)
-							}}
+						<DropDownPicker
+							open={open}
+							value={breed || 'random'}
 							items={breeds}
+							setOpen={setOpen}
+							setValue={setBreed}
+							setItems={setBreeds}
 						/>
 					)}
 
 					{/* 찾기 버튼 */}
 					<TouchableOpacity onPress={handleButton} style={styles.button}>
-						<Text style={styles.buttonText}>{whatBook === 'cat' ? '고양이 찾기' : '강아지 찾기'}</Text>
+						<Text style={styles.buttonText}>
+							{whatBook === 'cat' ? '고양이 찾기' : '강아지 찾기'}
+						</Text>
 					</TouchableOpacity>
 
 					{/* Cat Dog 전환 */}
@@ -212,13 +266,21 @@ export default function App() {
 					</View>
 
 					<View style={styles.stackView}>
-						{stack.length > 0 && <Text style={styles.stackTitle}>{whatBook === 'cat' ? '찾아본 고양이' : '찾아본 강아지'}</Text>}
+						{stack.length > 0 && (
+							<Text style={styles.stackTitle}>
+								{whatBook === 'cat' ? '찾아본 고양이' : '찾아본 강아지'}
+							</Text>
+						)}
 						{stack.map(
 							(i, idx) =>
 								whatBook === i.animal && (
-									<TouchableOpacity style={styles.stackFlex} key={idx} onPress={() => pressStack(idx)}>
+									<TouchableOpacity
+										style={styles.stackFlex}
+										key={idx}
+										onPress={() => pressStack(idx)}
+									>
 										<Image source={{ uri: i.url }} style={styles.stackImg} />
-										<Text style={styles.stackText}>{i.breeds[0].name}</Text>
+										<Text style={styles.stackText}>{i.breeds?.[0].name}</Text>
 									</TouchableOpacity>
 								),
 						)}
@@ -226,10 +288,16 @@ export default function App() {
 				</View>
 				<TouchableOpacity style={styles.footer}>
 					<Text style={styles.plainText}>made By </Text>
-					<Text style={styles.linkText} onPress={() => Linking.openURL('https://github.com/imki123')}>
+					<Text
+						style={styles.linkText}
+						onPress={() => Linking.openURL('https://github.com/imki123')}
+					>
 						imki123
 					</Text>
-					<Image source={require('./assets/github_small.png')} style={styles.githubImg} />
+					<Image
+						source={require('./assets/github_small.png')}
+						style={styles.githubImg}
+					/>
 				</TouchableOpacity>
 			</ScrollView>
 		</SafeAreaView>

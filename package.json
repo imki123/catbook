@@ -12,10 +12,6 @@
 	},
 	"dependencies": {
 		"axios": "^1.2.2",
-		"eslint": "^8.26.0",
-		"eslint-plugin-import": "^2.26.0",
-		"eslint-plugin-react-hooks": "^4.6.0",
-		"eslint-plugin-react-native": "^4.0.0",
 		"expo": "^47.0.9",
 		"expo-cli": "^6.0.8",
 		"expo-constants": "^14.0.2",
@@ -25,14 +21,20 @@
 		"react": "^18.1.0",
 		"react-dom": "^18.1.0",
 		"react-native": "0.70.5",
+		"react-native-dropdown-picker": "^5.4.4",
 		"react-native-emoji": "^1.8.0",
-		"react-native-picker-select": "8.0.4",
 		"react-native-web": "^0.18.10"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.20.7",
 		"@babel/eslint-parser": "^7.19.1",
-		"babel-preset-expo": "^9.2.2"
+		"@react-native-community/eslint-config": "^3.2.0",
+		"babel-preset-expo": "^9.2.2",
+		"eslint": "^8.30.0",
+		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-react": "^7.31.11",
+		"eslint-plugin-react-hooks": "^4.6.0",
+		"prettier": "^2.8.1"
 	},
 	"private": true
 }
