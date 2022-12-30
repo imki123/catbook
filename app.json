@@ -3,14 +3,14 @@
     "name": "Catbook",
     "slug": "Catbook",
     "platforms": ["ios", "android", "web"],
-    "version": "1.0.13",
+    "version": "1.0.14",
     "android": {
-      "versionCode": 13,
+      "versionCode": 14,
       "package": "com.github.imki123",
       "permissions": []
     },
     "ios": {
-      "buildNumber": "1.0.13",
+      "buildNumber": "1.0.14",
       "supportsTablet": true,
       "bundleIdentifier": "com.github.imki123"
     },

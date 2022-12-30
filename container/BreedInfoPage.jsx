@@ -124,7 +124,7 @@ const BreedInfoPage = () => {
 
           //검색 기록 추가하기 stack
           res.data[0].animal = whatBook
-          if (!res.data[0].breeds?.[0]?.name) {
+          if (res.data[0].breeds?.[0]?.name === undefined) {
             const finded = breeds?.find((item) => item.value === searchBreed)
             res.data[0].breeds = [{ name: finded?.label || searchBreed }]
           }
