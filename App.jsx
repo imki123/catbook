@@ -7,9 +7,9 @@ import { styles } from './styles.js'
 console.info('### ENV:', process.env.NODE_ENV)
 
 export default function App() {
-	return (
-		<SafeAreaView style={styles.safeContainer}>
-			<BreedInfoPage />
-		</SafeAreaView>
-	)
+  return (
+    <SafeAreaView style={styles.safeContainer}>
+      <BreedInfoPage />
+    </SafeAreaView>
+  )
 }
