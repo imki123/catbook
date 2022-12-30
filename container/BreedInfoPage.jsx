@@ -44,6 +44,7 @@ const BreedInfoPage = () => {
             setImageUri(null)
             setBreedInfo(null)
             setBreed('')
+            setStack([])
             setWhatBook('cat')
             BackHandler.exitApp()
           },
@@ -250,10 +251,12 @@ const BreedInfoPage = () => {
         <View style={styles.changeBookView}>
           <Text
             style={styles.stackText}
-            onClick={() => {
+            onPress={() => {
+              setImageUri(null)
+              setBreed('')
               setStack([])
               setBreedInfo(null)
-              setImageUri(whatBook === 'dog' ? dogMain : catMain)
+              setRandomable(true)
             }}
           >
             검색기록 초기화
