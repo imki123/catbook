@@ -28,8 +28,9 @@ Change version, versionCode, buildNumber up in app.json
 ### Build to EAS
 
 ```
-eas build --platform android
-OR eas build --platform ios
+npm run build
+OR
+npm run build:ios
 ```
 
 And deploy an app in APP STORE console.

@@ -1,41 +1,41 @@
 {
-	"main": "node_modules/expo/AppEntry.js",
-	"homepage": "https://imki123.github.io/catbook/",
-	"scripts": {
-		"start": "expo start",
-		"android": "expo start --android",
-		"ios": "expo start --ios",
-		"web": "expo start --web",
-		"eject": "expo eject",
-		"predeploy": "expo export:web",
-		"deploy": "gh-pages -d web-build",
-		"export:android": "expo export:android",
-		"export:ios": "expo export:ios"
-	},
-	"dependencies": {
-		"axios": "^1.2.2",
-		"expo": "^47.0.9",
-		"expo-cli": "^6.0.8",
-		"expo-constants": "^14.0.2",
-		"expo-linking": "^3.3.0",
-		"gh-pages": "^4.0.0",
-		"react": "^18.1.0",
-		"react-dom": "^18.1.0",
-		"react-native": "0.70.5",
-		"react-native-dropdown-picker": "^5.4.4",
-		"react-native-emoji": "^1.8.0",
-		"react-native-web": "^0.18.10"
-	},
-	"devDependencies": {
-		"@babel/core": "^7.20.7",
-		"@babel/eslint-parser": "^7.19.1",
-		"@react-native-community/eslint-config": "^3.2.0",
-		"babel-preset-expo": "^9.2.2",
-		"eslint": "^8.30.0",
-		"eslint-plugin-import": "^2.26.0",
-		"eslint-plugin-react": "^7.31.11",
-		"eslint-plugin-react-hooks": "^4.6.0",
-		"prettier": "^2.8.1"
-	},
-	"private": true
+  "main": "node_modules/expo/AppEntry.js",
+  "homepage": "https://imki123.github.io/catbook/",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject",
+    "predeploy": "expo export:web",
+    "deploy": "gh-pages -d web-build",
+    "build": "eas build --platform android",
+    "build:ios": "eas build --platform ios"
+  },
+  "dependencies": {
+    "axios": "^1.2.2",
+    "expo": "^47.0.9",
+    "expo-cli": "^6.0.8",
+    "expo-constants": "^14.0.2",
+    "expo-linking": "^3.3.0",
+    "gh-pages": "^4.0.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-native": "0.70.5",
+    "react-native-dropdown-picker": "^5.4.4",
+    "react-native-emoji": "^1.8.0",
+    "react-native-web": "^0.18.10"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.7",
+    "@babel/eslint-parser": "^7.19.1",
+    "@react-native-community/eslint-config": "^3.2.0",
+    "babel-preset-expo": "^9.2.2",
+    "eslint": "^8.30.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^2.8.1"
+  },
+  "private": true
 }
