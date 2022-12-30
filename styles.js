@@ -65,7 +65,7 @@ let styles = StyleSheet.create({
 		maxWidth: 600,
 		display: 'flex',
 		flexDirection: 'row',
-		justifyContent: 'flex-end',
+		justifyContent: 'space-between',
 	},
 	changeBookText: {
 		margin: 0,
@@ -115,7 +115,7 @@ let styles = StyleSheet.create({
 		marginBottom: 4,
 		display: 'flex',
 		flexDirection: 'row',
-		justifyContent: 'center',
+		justifyContent: 'flex-end',
 		alignItems: 'center',
 	},
 	plainText: {
