@@ -48,6 +48,12 @@ let styles = StyleSheet.create({
 		paddingVertical: 15,
 		borderRadius: 5,
 	},
+	buttonDisabled: {
+		backgroundColor: 'gray',
+		paddingHorizontal: 20,
+		paddingVertical: 15,
+		borderRadius: 5,
+	},
 	buttonText: {
 		fontSize: 20,
 		color: '#fff',

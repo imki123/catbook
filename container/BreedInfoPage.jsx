@@ -13,17 +13,16 @@ import DropDownPicker from 'react-native-dropdown-picker'
 import Emoji from 'react-native-emoji'
 
 import axios from 'axios'
-import * as Linking from 'expo-linking'
 
 import dogMain from '../assets/dog_main.png'
-import gitHubIcon from '../assets/github_small.png'
 import catMain from '../assets/main.png'
+import GithubIcon from '../component/GithubIcon.jsx'
 import { styles } from '../styles'
 
 const BreedInfoPage = () => {
 	const [whatBook, setWhatBook] = useState('cat') //book 선택
 	const [imageUri, setImageUri] = useState(null) //이미지 url
-	const [breeds, setBreeds] = useState(null) //종 리스트
+	const [breeds, setBreeds] = useState([]) //종 리스트
 	const [breed, setBreed] = useState('') //선택한 고양이 종류
 	const [breedInfo, setBreedInfo] = useState(null) //고양이 정보
 	const [randomable, setRandomable] = useState(false) //랜덤검색 가능여부
@@ -248,7 +247,11 @@ const BreedInfoPage = () => {
 				)}
 
 				{/* 찾기 버튼 */}
-				<TouchableOpacity onPress={handleButton} style={styles.button}>
+				<TouchableOpacity
+					onPress={handleButton}
+					style={breeds.length === 0 ? styles.buttonDisabled : styles.button}
+					disabled={breeds.length === 0}
+				>
 					<Text style={styles.buttonText}>
 						{whatBook === 'cat' ? '고양이 찾기' : '강아지 찾기'}
 					</Text>
@@ -271,6 +274,7 @@ const BreedInfoPage = () => {
 						onPress={() => {
 							whatBook === 'cat' ? setWhatBook('dog') : setWhatBook('cat')
 							setBreed('')
+							setBreeds([])
 							setImageUri(null)
 							setBreedInfo(null)
 							setRandomable(false)
@@ -303,15 +307,7 @@ const BreedInfoPage = () => {
 					)}
 				</View>
 			</View>
-			<TouchableOpacity style={styles.footer}>
-				<Text
-					style={styles.linkText}
-					onPress={() => Linking.openURL('https://github.com/imki123')}
-				>
-					imki123
-				</Text>
-				<Image source={gitHubIcon} style={styles.githubImg} />
-			</TouchableOpacity>
+			<GithubIcon />
 		</ScrollView>
 	)
 }
