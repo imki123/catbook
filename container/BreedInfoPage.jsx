@@ -30,17 +30,6 @@ const BreedInfoPage = () => {
 
   // effect
   useEffect(() => {
-    const body = document.querySelector('body')
-    if (body) {
-      if (open) {
-        body.style.overflow = 'hidden'
-      } else {
-        body.style.overflow = 'auto'
-      }
-    }
-  }, [open])
-
-  useEffect(() => {
     //백버튼 종료 확인하기 useEffect에서 동작해야함
     const backAction = () => {
       Alert.alert('Catbook 종료', 'Catbook을 종료하시겠어요?', [
@@ -121,7 +110,7 @@ const BreedInfoPage = () => {
     //이미지 및 정보 가져오기
     const api_url =
       process.env.NODE_ENV === 'development'
-        ? 'http://localhost:4001'
+        ? 'http://192.168.0.10:4001' // BE ip에 맞춰서 변경 필요
         : 'https://expressgoyoung2-production.up.railway.app'
     axios
       .get(api_url + `/catbook/getAnimal/${whatBook}/${searchBreed}`, {
@@ -154,6 +143,7 @@ const BreedInfoPage = () => {
 
   return (
     <ScrollView
+      scrollEnabled={!open}
       contentContainerStyle={styles.contentContainer}
       centerContent={true}
     >
@@ -241,6 +231,7 @@ const BreedInfoPage = () => {
             setOpen={setOpen}
             setValue={setBreed}
             setItems={setBreeds}
+            listMode="SCROLLVIEW"
           />
         )}
 
@@ -284,11 +275,11 @@ const BreedInfoPage = () => {
 
         <View style={styles.stackView}>
           {stack.length > 0 && (
-            <div style={styles.stackRow}>
+            <View style={styles.stackRow}>
               <Text style={styles.stackTitle}>
                 {whatBook === 'cat' ? '찾아본 고양이' : '찾아본 강아지'}
               </Text>
-            </div>
+            </View>
           )}
           {stack.map(
             (i, idx) =>
