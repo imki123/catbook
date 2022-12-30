@@ -1,36 +1,36 @@
 {
-	"expo": {
-		"name": "Catbook",
-		"slug": "Catbook",
-		"platforms": ["ios", "android", "web"],
-		"version": "1.0.10",
-		"android": {
-			"versionCode": 10,
-			"package": "com.github.imki123",
-			"permissions": []
-		},
-		"ios": {
-			"buildNumber": "1.0.10",
-			"supportsTablet": true,
-			"bundleIdentifier": "com.github.imki123"
-		},
-		"orientation": "portrait",
-		"icon": "./assets/icon.png",
-		"splash": {
-			"image": "./assets/splash.png",
-			"resizeMode": "contain",
-			"backgroundColor": "#ffffff"
-		},
-		"updates": {
-			"fallbackToCacheTimeout": 0
-		},
-		"assetBundlePatterns": ["**/*"],
-		"description": "귀여운 고양이🐈와 강아지🐕가 사진이 듬뿍! Catbook에서 힐링하세요~😄",
-		"githubUrl": "https://github.com/imki123/catbook",
-		"extra": {
-			"eas": {
-				"projectId": "f208e765-c91e-4da0-9e9e-663eb53ec1d1"
-			}
-		}
-	}
+  "expo": {
+    "name": "Catbook",
+    "slug": "Catbook",
+    "platforms": ["ios", "android", "web"],
+    "version": "1.0.11",
+    "android": {
+      "versionCode": 11,
+      "package": "com.github.imki123",
+      "permissions": []
+    },
+    "ios": {
+      "buildNumber": "1.0.11",
+      "supportsTablet": true,
+      "bundleIdentifier": "com.github.imki123"
+    },
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "description": "귀여운 고양이🐈와 강아지🐕가 사진이 듬뿍! Catbook에서 힐링하세요~😄",
+    "githubUrl": "https://github.com/imki123/catbook",
+    "extra": {
+      "eas": {
+        "projectId": "f208e765-c91e-4da0-9e9e-663eb53ec1d1"
+      }
+    }
+  }
 }
