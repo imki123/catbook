@@ -1,7 +1,7 @@
 {
   "background_color": "#ffffff",
   "description": "귀여운 고양이🐈와 강아지🐕 사진이 듬뿍! Catbook에서 힐링하세요~😄",
-  "display": "standalone",
+  "display": "minimal-ui",
   "lang": "en",
   "name": "Catbook",
   "short_name": "Catbook",
