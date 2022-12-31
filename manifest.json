@@ -1,11 +1,11 @@
 {
   "background_color": "#ffffff",
-  "description": "귀여운 고양이🐈와 강아지🐕가 사진이 듬뿍! Catbook에서 힐링하세요~😄",
+  "description": "귀여운 고양이🐈와 강아지🐕 사진이 듬뿍! Catbook에서 힐링하세요~😄",
   "display": "standalone",
   "lang": "en",
   "name": "Catbook",
   "short_name": "Catbook",
-  "start_url": "/?utm_source=web_app_manifest",
+  "start_url": "/catbook",
   "orientation": "portrait",
   "related_applications": [
     {
