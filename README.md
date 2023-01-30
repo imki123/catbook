@@ -10,6 +10,7 @@ https://imki123.github.io/catbook/
 # How to deploy to web
 
 `npm run deploy`
+% node version use 16 %
 
 # How to Build to native app
 

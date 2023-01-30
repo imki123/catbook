@@ -112,7 +112,7 @@ const BreedInfoPage = () => {
     const api_url =
       process.env.NODE_ENV === 'development'
         ? 'http://192.168.0.10:4001' // BE ip에 맞춰서 변경 필요
-        : 'https://expressgoyoung2-production.up.railway.app'
+        : 'https://express-goyoung2.onrender.com' // set BE url
     axios
       .get(api_url + `/catbook/getAnimal/${whatBook}/${searchBreed}`, {
         withCredentials: true,
