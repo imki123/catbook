@@ -24,9 +24,11 @@ eas login
 eas build:configure
 ```
 
-Change version, versionCode, buildNumber up in app.json
-
 ### Build to EAS
+
+```
+Change version, versionCode, buildNumber up in app.json
+```
 
 ```
 npm run build
