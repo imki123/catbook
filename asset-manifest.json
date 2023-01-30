@@ -1,7 +1,7 @@
 {
   "files": {
-    "app.js": "/catbook/static/js/app.2738edac.chunk.js",
-    "app.js.map": "/catbook/static/js/app.2738edac.chunk.js.map",
+    "app.js": "/catbook/static/js/app.7fb0317e.chunk.js",
+    "app.js.map": "/catbook/static/js/app.7fb0317e.chunk.js.map",
     "runtime~app.js": "/catbook/static/js/runtime~app.bd679f9e.js",
     "runtime~app.js.map": "/catbook/static/js/runtime~app.bd679f9e.js.map",
     "static/js/2.9f322d9f.chunk.js": "/catbook/static/js/2.9f322d9f.chunk.js",
@@ -24,6 +24,6 @@
   "entrypoints": [
     "static/js/runtime~app.bd679f9e.js",
     "static/js/2.9f322d9f.chunk.js",
-    "static/js/app.2738edac.chunk.js"
+    "static/js/app.7fb0317e.chunk.js"
   ]
 }
