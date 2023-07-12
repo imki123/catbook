@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "axios": "^1.2.2",
-    "expo": "^47.0.9",
+    "expo": "^49.0.2",
     "expo-cli": "^6.0.8",
     "expo-constants": "^14.0.2",
     "gh-pages": "^4.0.0",
@@ -28,7 +28,7 @@
     "@babel/core": "^7.20.7",
     "@babel/eslint-parser": "^7.19.1",
     "@react-native-community/eslint-config": "^3.2.0",
-    "babel-preset-expo": "^9.2.2",
+    "babel-preset-expo": "^9.5.0",
     "eslint": "^8.30.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-react": "^7.31.11",
